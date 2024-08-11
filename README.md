@@ -27,7 +27,7 @@ python script_name.py <YouTube Video URL> [resolution - optional]
 ```
 
 - **`<YouTube Video URL>`**: URL of the YouTube video you want to process.
-- **`<YouTube Video URL>`**: Desired resolution for the video (e.g., '360p'). If not provided, the default resolution is '360p'.
+- **`[resolution - optional]`**: Desired resolution for the video (e.g., '360p'). If not provided, the default resolution is '360p'.
 
 
 ## Example Usage
@@ -46,7 +46,7 @@ python script_name.py https://www.youtube.com/watch?v=hxDOyv-Z8_k
 
 Feel free to replace `script_name.py` with the actual name of your script file.
 
-In this example:
+In this examples:
 
 - The script will download the video from the provided YouTube URL.
 - It will process the video at a resolution of '360p'.

@@ -197,8 +197,11 @@ class VideoProcessor:
 
                             slide_paths.append(slide_path)
                             frame_buffer.clear()
+                            frame_buffer.append(current_frame)
+                else:
+                    frame_buffer.append(current_frame)
 
-                if self.is_valid_proportion_of_almost_white_pixels(current_frame, VideoProcessor.WHITE_THRESHOLD, VideoProcessor.MAX_WHITE_PERCENTAGE / 100):
+                if previous_frame is not None and self.is_valid_proportion_of_almost_white_pixels(current_frame, VideoProcessor.WHITE_THRESHOLD, VideoProcessor.MAX_WHITE_PERCENTAGE / 100):
                     frame_buffer.append(current_frame)
 
                 previous_frame = current_frame

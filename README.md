@@ -44,6 +44,12 @@ or
 python script_name.py https://www.youtube.com/watch?v=hxDOyv-Z8_k
 ```
 
+Or, if you wish, you can insert several class links by simply executing:
+
+```bash
+python script_name.py
+```
+
 Feel free to replace `script_name.py` with the actual name of your script file.
 
 In this examples:

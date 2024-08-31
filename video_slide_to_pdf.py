@@ -14,7 +14,7 @@ class VideoProcessor:
     WHITE_THRESHOLD = 100
     TEMP_VIDEO_PATH = 'video_temp.mp4'
 
-    def __init__(self, youtube_url="https://www.youtube.com/watch?v=hxDOyv-Z8_k", resolution='360p'):
+    def __init__(self, youtube_url=None, resolution='360p'):
         """
         Initializes the VideoProcessor with the YouTube URL and resolution.
 
@@ -240,30 +240,37 @@ class VideoProcessor:
         except Exception as e:
             print(f"Error creating PDF: {e}")
 
-    def process_video(self):
+    def process_video(self, pdf_name):
         """
         Main function to process the video, extract slides, and create a PDF.
         """
         try:
             self.download_video()
             slide_paths = self.extract_slides(threshold=VideoProcessor.THRESHOLD_DIFF)
-            self.create_pdf(slide_paths, 'slides_output.pdf')
-            self.remove_temp_video()  # Cleanup temporary files
+            self.create_pdf(slide_paths, pdf_name)
+            self.remove_temp_video()
         except Exception as e:
             print(f"Error processing video: {e}")
 
 def main():
-    """
-    Entry point of the script when run directly.
-    """
     try:
         if len(sys.argv) > 1:
             youtube_url = sys.argv[1]
             resolution = sys.argv[2] if len(sys.argv) > 2 else '360p'
             processor = VideoProcessor(youtube_url, resolution)
-            processor.process_video()
+            processor.process_video('slides_output.pdf')
         else:
-            print("Usage: python script_name.py <YouTube Video URL> [resolution - optional]")
+            links = []
+            while True:
+                link = input("Enter YouTube video URL (or press Enter to finish): ")
+                if not link:
+                    break
+                links.append(link)
+            resolution = input("Enter the desired resolution (default is 360p): ").strip() or '360p'
+
+            for i, link in enumerate(links):
+                processor = processor = VideoProcessor(youtube_url=link, resolution=resolution)
+                processor.process_video(f'{i}.pdf')
     except Exception as e:
         print(f"Error in main function: {e}")
 
